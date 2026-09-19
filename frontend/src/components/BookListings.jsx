@@ -9,3 +9,4 @@ const BookListings = () => {
 };
 
 export default BookListings;
+

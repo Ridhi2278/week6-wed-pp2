@@ -1,7 +1,7 @@
-# Frontend Activity — Book Library (Parts 1 & 2)
+# Frontend Activity: Book Library (Parts 1 & 2)
 
-- [Part 1 — CRUD Front-End (Iterations 0–5)](#part-1--crud-front-end)
-- [Part 2 — Authentication & Route Protection (Iterations 6–7)](#part-2--authentication--route-protection)
+- [Part 1: CRUD Front-End (Iterations 0–5)](#part-1--crud-front-end)
+- [Part 2: Authentication & Route Protection (Iterations 6–7)](#part-2--authentication--route-protection)
 
 ---
 
@@ -159,7 +159,7 @@ Commit after each iteration.
 
 ---
 
-# Part 2 — Authentication & Route Protection
+# Part 2: Authentication & Route Protection
 
 ## Overview
 
@@ -241,3 +241,4 @@ Add `isAuthenticated` state to `App.jsx` (initialised from `localStorage` so it 
 | Signup / Login pages | ✅ | ❌ → `/` |
 
 Commit after each iteration.
+

@@ -1,13 +1,13 @@
-# Frontend Activity — Book Library (Parts 1 & 2)
+# Frontend Activity: Book Library (Parts 1 & 2)
 
 
-- [Part 1 — CRUD API (Iterations 0–5)](#part-1--crud-front-end)
-- [Part 2 — Authentication & Route Protection (Iterations 6–7)](#part-2--authentication--route-protection)
+- [Part 1: CRUD API (Iterations 0–5)](#part-1--crud-front-end)
+- [Part 2: Authentication & Route Protection (Iterations 6–7)](#part-2--authentication--route-protection)
 
 
 ---
 
-# Part 1 — CRUD Front-End
+# Part 1: CRUD Front-End
 
 ## Overview
 
@@ -286,7 +286,7 @@ Right now the form is there but nothing happens when you press "Add Book" — th
    );
    ```
 
-#### Step B — Accept and map books in `BookListings.jsx`
+#### Step B: Accept and map books in `BookListings.jsx`
 
 The component currently renders a single hard-coded `<BookListing />`. Change it to accept a `books` prop and map over the array:
 
@@ -356,7 +356,7 @@ import BookPage from "./pages/BookPage";
 
 The `:id` is a **URL parameter**. React Router will match URLs like `/books/abc123` and make `abc123` available via the `useParams` hook.
 
-#### Step B — Link each book to its detail page in `BookListing.jsx`
+#### Step B: Link each book to its detail page in `BookListing.jsx`
 
 Import `Link` from `react-router-dom` and wrap the book title:
 
@@ -495,7 +495,7 @@ The route and the detail page already exist from Iteration 3. You only need to a
 
 **Files to change:** `src/App.jsx`, `src/pages/BookPage.jsx`, `src/pages/EditBookPage.jsx`
 
-#### Step A — Add a new route in `App.jsx`
+#### Step A: Add a new route in `App.jsx`
 
 Import `EditBookPage` and add a route:
 
@@ -505,7 +505,7 @@ import EditBookPage from "./pages/EditBookPage";
 <Route path="/edit-book/:id" element={<EditBookPage />} />
 ```
 
-#### Step B — Add an "Edit" button in `BookPage.jsx`
+#### Step B: Add an "Edit" button in `BookPage.jsx`
 
 Add a button that navigates to the edit page:
 
@@ -852,7 +852,7 @@ export default Signup;
 
 > **Key concept:** `localStorage.setItem("user", JSON.stringify(user))` saves the object `{ email, token }` so it persists across page refreshes. You can read it back later with `JSON.parse(localStorage.getItem("user"))`.
 
-#### Step B — Create the Login page
+#### Step B: Create the Login page
 
 Create `src/pages/Login.jsx`:
 
@@ -905,7 +905,7 @@ const Login = () => {
 export default Login;
 ```
 
-#### Step C — Update `App.jsx` to add auth routes
+#### Step C: Update `App.jsx` to add auth routes
 
 Import the new pages and add routes for `/signup` and `/login`:
 
@@ -1024,7 +1024,7 @@ npm run dev
 
 **Files to change:** `src/App.jsx`, `src/components/Navbar.jsx`, `src/pages/Signup.jsx`, `src/pages/Login.jsx`, `src/pages/BookPage.jsx`, `src/pages/AddBookPage.jsx`, `src/pages/EditBookPage.jsx`
 
-#### Step A — Add `isAuthenticated` state to `App.jsx`
+#### Step A: Add `isAuthenticated` state to `App.jsx`
 
 The app needs to know whether a user is logged in. We store this in a top-level state variable, initialized from `localStorage` so it survives page refreshes:
 
@@ -1115,7 +1115,7 @@ export default App;
 
 > **Why `<Navigate to="/signup" />`?** This is React Router's way of doing a redirect. If a non-authenticated user tries to visit `/books/add-book`, they are immediately taken to the Signup page instead.
 
-#### Step B — Update `Navbar.jsx` for conditional rendering
+#### Step B: Update `Navbar.jsx` for conditional rendering
 
 The Navbar should show different links depending on whether the user is logged in:
 
@@ -1161,7 +1161,7 @@ export default Navbar;
 > - When not authenticated: shows "Login" and "Signup" links only.
 > - `handleClick` now also calls `setIsAuthenticated(false)` to re-render the entire app.
 
-#### Step C — Update `Signup.jsx` to set authentication state
+#### Step C: Update `Signup.jsx` to set authentication state
 
 Accept `setIsAuthenticated` as a prop and call it after a successful signup:
 
@@ -1179,7 +1179,7 @@ Inside `handleFormSubmit`, after `localStorage.setItem(...)`, add:
     navigate("/");
 ```
 
-#### Step D — Update `Login.jsx` to set authentication state
+#### Step D: Update `Login.jsx` to set authentication state
 
 Same pattern — accept `setIsAuthenticated` as a prop:
 
@@ -1197,7 +1197,7 @@ Inside `handleFormSubmit`, after `localStorage.setItem(...)`, add:
     navigate("/");
 ```
 
-#### Step E — Send the token when adding a book (`AddBookPage.jsx`)
+#### Step E: Send the token when adding a book (`AddBookPage.jsx`)
 
 The `backend-protect/` API requires a JWT in the `Authorization` header for POST requests. Read the token from `localStorage` and include it in the `fetch` call. The book object must also include the new `publisher`, `genre`, and `dueDate` fields:
 
@@ -1230,7 +1230,7 @@ The `backend-protect/` API requires a JWT in the `Authorization` header for POST
 
 3. Make sure `submitForm` still builds a book object that includes `publisher`, `genre`, and `dueDate` (same as Iteration 1 of Part 1).
 
-#### Step F — Send the token when deleting a book and conditionally show buttons (`BookPage.jsx`)
+#### Step F: Send the token when deleting a book and conditionally show buttons (`BookPage.jsx`)
 
 1. **Accept the `isAuthenticated` prop:**
    ```jsx
@@ -1271,7 +1271,7 @@ The `backend-protect/` API requires a JWT in the `Authorization` header for POST
    )}
    ```
 
-#### Step G — Send the token when updating a book (`EditBookPage.jsx`)
+#### Step G: Send the token when updating a book (`EditBookPage.jsx`)
 
 Same pattern as `AddBookPage`. The book object must also include `publisher`, `genre`, and `dueDate`:
 
@@ -1358,3 +1358,4 @@ Congratulations! You have extended the Book Library front-end with authenticatio
 - Add a profile page (`/profile`) that reads and displays `req.user` from a protected `GET /api/users/me` endpoint
 - Add token expiry handling — detect 401 responses and automatically log the user out
 - Write automated tests for auth flows with React Testing Library
+
