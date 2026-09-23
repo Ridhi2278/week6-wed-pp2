@@ -14,22 +14,22 @@ const AddBookPage = () => {
   const navigate = useNavigate();
 
   const addBook = async (newBook) => {
-    try {
-      const res = await fetch("/api/books", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newBook),
-      });
+    const res = await fetch("/api/books", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBook),
+    });
 
-      if (!res.ok) {
-        throw new Error("Failed to add book");
-      }
-    } catch (error) {
-      console.error(error);
+    if (!res.ok) {
+      throw new Error("Failed to add book");
     }
+
+    return await res.json();
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     const newBook = {
@@ -45,13 +45,19 @@ const AddBookPage = () => {
       },
     };
 
-    addBook(newBook);
-    navigate("/");
+    try {
+      await addBook(newBook);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add book");
+    }
   };
 
   return (
     <div className="create">
       <h2>Add a New Book</h2>
+
       <form onSubmit={submitForm}>
         <label>Book Title:</label>
         <input
