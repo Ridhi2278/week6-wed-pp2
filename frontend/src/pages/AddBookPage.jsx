@@ -13,11 +13,15 @@ const AddBookPage = () => {
 
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user ? user.token : null;
+
   const addBook = async (newBook) => {
     const res = await fetch("/api/books", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(newBook),
     });

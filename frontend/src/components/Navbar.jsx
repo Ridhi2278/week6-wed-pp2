@@ -1,5 +1,6 @@
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const handleClick = () => {
+    setIsAuthenticated(false);
     localStorage.removeItem("user");
   };
 
@@ -8,10 +9,21 @@ const Navbar = () => {
       <h1>Book Library</h1>
       <div className="links">
         <a href="/">Home</a>
-        <a href="/add-book">Add Book</a>
-        <a href="/login">Login</a>
-        <a href="/signup">Signup</a>
-        <button onClick={handleClick}>Log out</button>
+
+        {isAuthenticated && (
+          <>
+            <a href="/add-book">Add Book</a>
+            <span>{JSON.parse(localStorage.getItem("user")).email}</span>
+            <button onClick={handleClick}>Log out</button>
+          </>
+        )}
+
+        {!isAuthenticated && (
+          <>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+          </>
+        )}
       </div>
     </nav>
   );
