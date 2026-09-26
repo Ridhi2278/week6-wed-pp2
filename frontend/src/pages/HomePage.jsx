@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await fetch("/api/books");
+        const res = await fetch("/api/books", { cache: "no-store" });
 
         if (!res.ok) {
           throw new Error("Could not fetch books");
